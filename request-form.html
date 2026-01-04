@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب منتج - MahWAY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="MahWAY Logo">
+                    <span>MahWAY</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">الخدمات</a></li>
+                    <li><a href="contact.html">التواصل</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="request-form.html" class="cta-btn active">أرسل رابط منتجك</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- نموذج طلب المنتج -->
+    <section class="request-form-section">
+        <div class="container">
+            <h1 class="section-title">طلب منتج جديد</h1>
+            <p class="section-subtitle">أرسل رابط المنتج الذي تريده وسنتواصل معك خلال 24 ساعة</p>
+            
+            <div class="form-container">
+                <form id="productRequestForm" action="php/send-email.php" method="POST">
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productLink">رابط المنتج *</label>
+                        <input type="url" id="productLink" name="productLink" placeholder="https://example.com/product" required>
+                        <small class="form-hint">ضع الرابط الكامل للمنتج الذي تريده</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="couponCode">كود الخصم (اختياري)</label>
+                        <input type="text" id="couponCode" name="couponCode" placeholder="أدخل كود الخصم إذا كان لديك">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>طريقة الدفع *</label>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <input type="radio" id="payment-50-50" name="paymentMethod" value="50-50" checked>
+                                <label for="payment-50-50">
+                                    <span class="payment-title">الدفع عند التواصل</span>
+                                    <span class="payment-desc">50% الآن + 50% عند الاستلام</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn-primary btn-block">إرسال الطلب</button>
+                    </div>
+                    
+                    <div class="form-notice">
+                        <p><i class="fas fa-info-circle"></i> سنقوم بالتواصل معك خلال 24 ساعة لتأكيد الطلب وتحديد السعر النهائي.</p>
+                    </div>
+                </form>
+                
+                <div class="form-sidebar">
+                    <div class="sidebar-box">
+                        <h3><i class="fas fa-info-circle"></i> معلومات مهمة</h3>
+                        <ul>
+                            <li>يتم الرد على الطلبات خلال 24 ساعة</li>
+                            <li>الدفع يتم 50% الآن و 50% عند الاستلام</li>
+                            <li>السعر النهائي لا يتغير بعد الموافقة</li>
+                            <li>لديك 3 أيام لمراجعة المنتج بعد الاستلام</li>
+                            <li>في حالة تلف المنتج يتم استرداد المبلغ بالكامل</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-box">
+                        <h3><i class="fas fa-headset"></i> الدعم الفوري</h3>
+                        <p>إذا واجهتك أي مشكلة في إرسال الطلب، يمكنك التواصل معنا مباشرة:</p>
+                        <a href="https://wa.me/6282128723094" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> واتساب مباشر
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="MahWAY Logo">
+                    <span>MahWAY</span>
+                </div>
+                <p>من حقك تمتلك أي منتج في أي مكان في العالم</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">الخدمات</a></li>
+                    <li><a href="contact.html">التواصل</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>التواصل</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> واتساب: +62821-2872-3094</li>
+                    <li><i class="fas fa-envelope"></i> البريد: mahway.contact@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; 2025 MahWAY</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('productRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // هنا يمكن إضافة التحقق من المدخلات وإرسال البيانات
+            // حاليًا سنعرض رسالة تأكيد
+            alert('تم إرسال طلبك بنجاح! سنتواصل معك خلال 24 ساعة.');
+            
+            // إعادة تعيين النموذج
+            this.reset();
+            
+            // في الحالة الفعلية، سيتم إرسال النموذج إلى الخادم
+            // this.submit();
+        });
+    </script>
+</body>
+</html>

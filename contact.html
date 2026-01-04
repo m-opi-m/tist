@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التواصل معنا - MahWAY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="MahWAY Logo">
+                    <span>MahWAY</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">الخدمات</a></li>
+                    <li><a href="payment.html">طرق الدفع</a></li>
+                    <li><a href="contact.html" class="active">التواصل</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="request-form.html" class="cta-btn">أرسل رابط منتجك</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- البانر الرئيسي للصفحة -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>تواصل معنا</h1>
+            <p>نحن هنا لمساعدتك في أي استفسار</p>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- نموذج التواصل -->
+                <div class="contact-form-container">
+                    <h2>أرسل لنا رسالة</h2>
+                    <p>يمكنك استخدام هذا النموذج للتواصل معنا لأي استفسار</p>
+                    
+                    <form id="contactForm" action="php/send-contact.php" method="POST">
+                        <div class="form-group">
+                            <label for="contactName">الاسم الكامل *</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactPhone">رقم الهاتف *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">البريد الإلكتروني *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">موضوع الرسالة *</label>
+                            <select id="contactSubject" name="contactSubject" required>
+                                <option value="">اختر موضوع الرسالة</option>
+                                <option value="استفسار عن خدمة">استفسار عن خدمة</option>
+                                <option value="متابعة طلب">متابعة طلب</option>
+                                <option value="شكوى">شكوى</option>
+                                <option value="اقتراح">اقتراح</option>
+                                <option value="طلب تعاون">طلب تعاون</option>
+                                <option value="أخرى">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">الرسالة *</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn-primary btn-block">إرسال الرسالة</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- معلومات التواصل -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-headset"></i> معلومات التواصل</h3>
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fab fa-whatsapp"></i>
+                                <div>
+                                    <strong>واتساب مباشر</strong>
+                                    <p>+62821-2872-3094</p>
+                                    <a href="https://wa.me/6282128723094" class="whatsapp-link" target="_blank">
+                                        ابدأ محادثة واتساب
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>البريد الإلكتروني</strong>
+                                    <p>mahway.contact@gmail.com</p>
+                                    <a href="mailto:mahway.contact@gmail.com" class="email-link">
+                                        أرسل بريد إلكتروني
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>أوقات العمل</strong>
+                                    <p>من السبت إلى الخميس</p>
+                                    <p>9:00 صباحًا - 10:00 مساءً</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- نموذج طلب سريع -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-bolt"></i> طلب سريع</h3>
+                        <p>إذا كنت تريد طلب منتج مباشرة، استخدم نموذج الطلب السريع:</p>
+                        <a href="request-form.html" class="btn-primary btn-block">طلب منتج جديد</a>
+                    </div>
+                    
+                    <!-- الأسئلة الشائعة -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-question-circle"></i> أسئلة سريعة</h3>
+                        <div class="quick-faq">
+                            <div class="quick-faq-item">
+                                <h4>كم مدة الرد على الرسائل؟</h4>
+                                <p>نرد خلال 24 ساعة كحد أقصى</p>
+                            </div>
+                            <div class="quick-faq-item">
+                                <h4>هل يمكنني التواصل في أي وقت؟</h4>
+                                <p>نعم، عبر واتساب على الرقم المذكور</p>
+                            </div>
+                            <div class="quick-faq-item">
+                                <h4>أين مقر الشركة؟</h4>
+                                <p>يمكنك زيارة مقرنا في العنوان التالي:</p>
+                                <p>الإحداثيات: 30.063071923807748, 31.26175643699427</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- الخريطة -->
+            <div class="map-section">
+                <h2 class="section-title">موقعنا على الخريطة</h2>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div class="map-info">
+                            <h3><i class="fas fa-map-marker-alt"></i> موقع MahWAY</h3>
+                            <p>الإحداثيات: 30.063071923807748, 31.26175643699427</p>
+                            <p>يمكنك استخدام خرائط جوجل للوصول إلى موقعنا</p>
+                            <a href="https://maps.google.com/?q=30.063071923807748,31.26175643699427" class="btn-secondary" target="_blank">
+                                <i class="fas fa-map"></i> فتح في خرائط جوجل
+                            </a>
+                        </div>
+                        <div class="map-image">
+                            <!-- يمكن استبدال هذا بصورة خريطة فعلية أو iframe لخرائط جوجل -->
+                            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="موقع MahWAY">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="MahWAY Logo">
+                    <span>MahWAY</span>
+                </div>
+                <p>من حقك تمتلك أي منتج في أي مكان في العالم</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">الخدمات</a></li>
+                    <li><a href="payment.html">طرق الدفع</a></li>
+                    <li><a href="contact.html">التواصل</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>التواصل</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> واتساب: +62821-2872-3094</li>
+                    <li><i class="fas fa-envelope"></i> البريد: mahway.contact@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; 2025 MahWAY</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // معالجة نموذج التواصل
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // التحقق من المدخلات
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = 'red';
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
+                return false;
+            }
+            
+            // إظهار رسالة نجاح
+            alert('تم إرسال رسالتك بنجاح! سنتواصل معك خلال 24 ساعة.');
+            
+            // إعادة تعيين النموذج
+            this.reset();
+            
+            // في الحالة الفعلية، سيتم إرسال النموذج إلى الخادم
+            // this.submit();
+        });
+    </script>
+</body>
+</html>
