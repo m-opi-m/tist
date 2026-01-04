@@ -711,3 +711,66 @@ if (typeof module !== 'undefined' && module.exports) {
         animateCounter
     };
 }
+    // ===== الأسئلة الشائعة (FAQ) =====
+    const faqContainer = document.querySelector('.faq-container');
+    
+    if (faqContainer) {
+        // تهيئة نظام الأسئلة الشائعة البسيط
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.closest('.faq-item');
+                const isActive = item.classList.contains('active');
+                
+                // إغلاق جميع الأسئلة الأخرى
+                if (!isActive) {
+                    document.querySelectorAll('.faq-item.active').forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                }
+                
+                // تبديل حالة السؤال الحالي
+                item.classList.toggle('active');
+                
+                // تحريك الأيقونة
+                const icon = this.querySelector('i');
+                if (item.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // فتح أول سؤال تلقائيًا
+        if (faqQuestions.length > 0) {
+            const firstItem = faqQuestions[0].closest('.faq-item');
+            firstItem.classList.add('active');
+            const firstIcon = faqQuestions[0].querySelector('i');
+            firstIcon.classList.remove('fa-chevron-down');
+            firstIcon.classList.add('fa-chevron-up');
+        }
+        
+        // البحث في الأسئلة (إذا كان هناك حقل بحث)
+        const faqSearch = document.getElementById('faqSearch');
+        if (faqSearch) {
+            faqSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const items = document.querySelectorAll('.faq-item');
+                
+                items.forEach(item => {
+                    const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+    }
