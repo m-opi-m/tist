@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة - MahWAY</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* تنسيقات الأسئلة الشائعة */
+        .faq-page-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            margin-top: 60px;
+        }
+        
+        .faq-page-hero-content {
+            text-align: center;
+        }
+        
+        .faq-page-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .faq-page-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .faq-breadcrumb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .faq-breadcrumb a {
+            color: var(--accent-color);
+        }
+        
+        .faq-breadcrumb i {
+            font-size: 0.8rem;
+        }
+        
+        .faq-main-section {
+            padding: var(--spacing-xl) 0;
+            background-color: #f8f9fa;
+        }
+        
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .faq-search-box {
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+        
+        .faq-search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: 1.1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: var(--transition-normal);
+        }
+        
+        .faq-search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .faq-search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-color);
+            font-size: 1.2rem;
+        }
+        
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: var(--spacing-xl);
+            justify-content: center;
+        }
+        
+        .faq-category-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .faq-category-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .faq-category-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .faq-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .faq-section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+        
+        .faq-section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .faq-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-color);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .faq-item.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 1px var(--accent-color), var(--shadow-md);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            flex: 1;
+        }
+        
+        .faq-question-icon {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            transition: var(--transition-normal);
+            margin-right: 1rem;
+        }
+        
+        .faq-item.active .faq-question-icon {
+            transform: rotate(180deg);
+            color: var(--secondary-color);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-answer-content {
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .faq-answer p {
+            margin: 0;
+            color: var(--gray-color);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            display: none;
+        }
+        
+        .no-results.show {
+            display: block;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: var(--gray-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .no-results p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+        }
+        
+        .faq-contact-cta {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .faq-contact-cta h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+        }
+        
+        .faq-contact-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .faq-contact-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-page-title {
+                font-size: 2rem;
+            }
+            
+            .faq-section-title {
+                font-size: 1.5rem;
+            }
+            
+            .faq-question h3 {
+                font-size: 1.1rem;
+            }
+            
+            .faq-contact-buttons {
+                flex-direction: column;
+            }
+            
+            .faq-contact-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="شعار MahWAY" width="40" height="40">
+                    <span class="logo-text">MahWAY</span>
+                </a>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> من نحن</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link"><i class="fas fa-concierge-bell"></i> الخدمات</a></li>
+                    <li class="nav-item"><a href="payment.html" class="nav-link"><i class="fas fa-credit-card"></i> طرق الدفع</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> التواصل</a></li>
+                    <li class="nav-item"><a href="faq.html" class="nav-link active"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                    <li class="nav-item cta-item"><a href="request-form.html" class="btn btn-primary nav-cta"><i class="fas fa-paper-plane"></i> أرسل رابط منتجك</a></li>
+                </ul>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="قائمة التنقل">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="faq-page-hero">
+        <div class="container">
+            <div class="faq-page-hero-content">
+                <h1 class="faq-page-title">الأسئلة الشائعة</h1>
+                <p class="faq-page-subtitle">إجابات على الأسئلة الأكثر شيوعًا حول خدماتنا</p>
+                <div class="faq-breadcrumb">
+                    <a href="index.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>الأسئلة الشائعة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Main Content -->
+    <section class="faq-main-section">
+        <div class="container">
+            <!-- Search Box -->
+            <div class="faq-search-box">
+                <i class="fas fa-search faq-search-icon"></i>
+                <input type="text" id="faqSearch" class="faq-search-input" placeholder="ابحث في الأسئلة الشائعة...">
+            </div>
+            
+            <!-- Categories -->
+            <div class="faq-categories">
+                <button class="faq-category-btn active" data-category="all">جميع الأسئلة</button>
+                <button class="faq-category-btn" data-category="general">عامة</button>
+                <button class="faq-category-btn" data-category="import">الاستيراد</button>
+                <button class="faq-category-btn" data-category="payment">الدفع</button>
+                <button class="faq-category-btn" data-category="shipping">الشحن</button>
+                <button class="faq-category-btn" data-category="customs">الجمرك والتراخيص</button>
+                <button class="faq-category-btn" data-category="safety">الأمان والجودة</button>
+            </div>
+            
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search"></i>
+                <p>لم يتم العثور على أسئلة تطابق بحثك. حاول استخدام مصطلحات بحث مختلفة.</p>
+            </div>
+            
+            <!-- FAQ Sections -->
+            <div class="faq-container" id="faqContainer">
+                <!-- General Questions -->
+                <div class="faq-section" data-category="general">
+                    <h2 class="faq-section-title">الأسئلة العامة حول الشركة والخدمات</h2>
+                    <div class="faq-items">
+                        <!-- Question 1 -->
+                        <div class="faq-item" data-search="ما هي MahWAY؟">
+                            <div class="faq-question">
+                                <h3>ما هي MahWAY؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>شركة متخصصة في الاستيراد، التصدير، والشحن الداخلي من أي دولة إلى مصر، مع خبرة 15 سنة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-item" data-search="ما الذي يميز MahWAY عن الشركات الأخرى؟">
+                            <div class="faq-question">
+                                <h3>ما الذي يميز MahWAY عن الشركات الأخرى؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>السعر ثابت، الدفع 50/50 أو كامل، شحن سريع، أمان المنتج، واسترداد الأموال في حالة التلفيات.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-item" data-search="ما هي رؤية الشركة؟">
+                            <div class="faq-question">
+                                <h3>ما هي رؤية الشركة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>تمكين العملاء من الحصول على أي منتج من أي مكان في العالم بسهولة وأمان.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-item" data-search="هل MahWAY مرخصة رسميًا؟">
+                            <div class="faq-question">
+                                <h3>هل MahWAY مرخصة رسميًا؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، لدينا تراخيص استيراد، تصدير، وشحن داخلي مع إمكانية التحقق منها.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 -->
+                        <div class="faq-item" data-search="ما هي خبرة الشركة؟">
+                            <div class="faq-question">
+                                <h3>ما هي خبرة الشركة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>أكثر من 15 سنة في الاستيراد، التصدير، والشحن الداخلي والخارجي.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 6 -->
+                        <div class="faq-item" data-search="هل يمكن استخدام الموقع بالعربية والإنجليزية؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن استخدام الموقع بالعربية والإنجليزية؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، الموقع متاح باللغتين.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 7 -->
+                        <div class="faq-item" data-search="هل يمكن التواصل مباشرة مع الشركة قبل إرسال الطلب؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن التواصل مباشرة مع الشركة قبل إرسال الطلب؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، عبر واتساب أو البريد الإلكتروني.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 8 -->
+                        <div class="faq-item" data-search="هل الموقع آمن؟">
+                            <div class="faq-question">
+                                <h3>هل الموقع آمن؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، يحتوي على شهادة SSL لضمان أمان البيانات الشخصية.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 9 -->
+                        <div class="faq-item" data-search="هل يمكن متابعة الشحنة؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن متابعة الشحنة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، يتم تحديث العملاء بحالة شحناتهم ومواعيد الوصول.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 10 -->
+                        <div class="faq-item" data-search="هل MahWAY توفر شحن سريع؟">
+                            <div class="faq-question">
+                                <h3>هل MahWAY توفر شحن سريع؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، تتوفر خدمة الشحن السريع لجميع الدول المدعومة.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Import Questions -->
+                <div class="faq-section" data-category="import">
+                    <h2 class="faq-section-title">الأسئلة حول الاستيراد</h2>
+                    <div class="faq-items">
+                        <!-- Question 1 -->
+                        <div class="faq-item" data-search="كيف أرسل طلب استيراد؟">
+                            <div class="faq-question">
+                                <h3>كيف أرسل طلب استيراد؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>أرسل رابط المنتج، الاسم، رقم الهاتف، والإيميل عبر نموذج الطلب على الموقع.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-item" data-search="كم يستغرق تجهيز الحسبة النهائية للمنتج؟">
+                            <div class="faq-question">
+                                <h3>كم يستغرق تجهيز الحسبة النهائية للمنتج؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>خلال 24 ساعة من استلام رابط المنتج.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-item" data-search="هل السعر يشمل الشحن والجمارك؟">
+                            <div class="faq-question">
+                                <h3>هل السعر يشمل الشحن والجمارك؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، الحسبة تشمل كل التكاليف: المنتج، الشحن، الجمارك، والضرائب.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-item" data-search="هل السعر قد يتغير بعد الحسبة؟">
+                            <div class="faq-question">
+                                <h3>هل السعر قد يتغير بعد الحسبة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>لا، السعر النهائي ثابت.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 -->
+                        <div class="faq-item" data-search="ما هي الدول التي يمكن الاستيراد منها؟">
+                            <div class="faq-question">
+                                <h3>ما هي الدول التي يمكن الاستيراد منها؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>السعودية، الأردن، العراق، اليابان، تركيا، إندونيسيا، الصين، الهند.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Questions -->
+                <div class="faq-section" data-category="payment">
+                    <h2 class="faq-section-title">الأسئلة حول الدفع</h2>
+                    <div class="faq-items">
+                        <!-- Question 1 -->
+                        <div class="faq-item" data-search="ما هي طرق الدفع المتاحة؟">
+                            <div class="faq-question">
+                                <h3>ما هي طرق الدفع المتاحة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>الدفع 50% عند الطلب + 50% عند الاستلام أو الدفع 100% مؤدّى (الأولوية للدفع الكامل).</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-item" data-search="هل يمكن الدفع بالكامل مسبقًا؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن الدفع بالكامل مسبقًا؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، يمكن الاتفاق على الدفع الكامل.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-item" data-search="هل أحتاج لإرسال بيانات حساسة؟">
+                            <div class="faq-question">
+                                <h3>هل أحتاج لإرسال بيانات حساسة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>لا، الدفع يتم بشكل آمن عند التواصل أو تحويل مباشر.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-item" data-search="هل توجد رسوم إضافية للدفع عند الاستلام؟">
+                            <div class="faq-question">
+                                <h3>هل توجد رسوم إضافية للدفع عند الاستلام؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>لا، السعر النهائي يشمل كل الرسوم.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 -->
+                        <div class="faq-item" data-search="هل يمكن استرداد الأموال؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن استرداد الأموال؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، إذا تم استلام المنتج متضررًا، لديك 3 أيام لاسترداد الأموال.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping Questions -->
+                <div class="faq-section" data-category="shipping">
+                    <h2 class="faq-section-title">الأسئلة حول الشحن</h2>
+                    <div class="faq-items">
+                        <!-- Question 1 -->
+                        <div class="faq-item" data-search="هل MahWAY توفر شحن داخلي داخل مصر؟">
+                            <div class="faq-question">
+                                <h3>هل MahWAY توفر شحن داخلي داخل مصر؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، نوصل المنتج لأي مكان داخل مصر.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-item" data-search="كم يستغرق الشحن الداخلي؟">
+                            <div class="faq-question">
+                                <h3>كم يستغرق الشحن الداخلي؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>عادة من 2 إلى 5 أيام حسب المحافظة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-item" data-search="كم يستغرق الشحن الدولي؟">
+                            <div class="faq-question">
+                                <h3>كم يستغرق الشحن الدولي؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>يختلف حسب الدولة، الحسبة تشمل جميع التكاليف المتوقعة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-item" data-search="هل هناك خيار الشحن السريع؟">
+                            <div class="faq-question">
+                                <h3>هل هناك خيار الشحن السريع؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، مقابل رسوم إضافية بسيطة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 -->
+                        <div class="faq-item" data-search="هل يمكن تتبع الشحنة بعد خروجها من الخارج؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن تتبع الشحنة بعد خروجها من الخارج؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، نوفر رقم تتبع وحالة الشحنة.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Customs Questions -->
+                <div class="faq-section" data-category="customs">
+                    <h2 class="faq-section-title">الأسئلة حول الجمارك والتراخيص</h2>
+                    <div class="faq-items">
+                        <!-- Question 1 -->
+                        <div class="faq-item" data-search="هل MahWAY مسؤولة عن التخليص الجمركي؟">
+                            <div class="faq-question">
+                                <h3>هل MahWAY مسؤولة عن التخليص الجمركي؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، نقوم بكل الإجراءات الجمركية.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-item" data-search="هل تشمل الحسبة الجمركية؟">
+                            <div class="faq-question">
+                                <h3>هل تشمل الحسبة الجمركية؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، الحسبة تشمل كل الرسوم والضرائب.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-item" data-search="هل يمكنني التحقق من صحة التراخيص؟">
+                            <div class="faq-question">
+                                <h3>هل يمكنني التحقق من صحة التراخيص؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، يمكن التحقق من تراخيص الاستيراد، التصدير، والنقل الداخلي الرسمية.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-item" data-search="ما هي التراخيص المتاحة؟">
+                            <div class="faq-question">
+                                <h3>ما هي التراخيص المتاحة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>استيراد: IMP-2025-45879، تصدير: EXP-2025-11234، نقل داخلي: TRN-2025-33421</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 -->
+                        <div class="faq-item" data-search="هل التراخيص سارية المفعول؟">
+                            <div class="faq-question">
+                                <h3>هل التراخيص سارية المفعول؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، وجميعها يمكن التحقق منها لدى الجهات الرسمية.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Safety Questions -->
+                <div class="faq-section" data-category="safety">
+                    <h2 class="faq-section-title">أسئلة عن الأمان والجودة</h2>
+                    <div class="faq-items">
+                        <!-- Question 1 -->
+                        <div class="faq-item" data-search="ما هي مدة مراجعة المنتج بعد الوصول؟">
+                            <div class="faq-question">
+                                <h3>ما هي مدة مراجعة المنتج بعد الوصول؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>3 أيام لفحص المنتج والتأكد من سلامته.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="faq-item" data-search="ماذا أفعل إذا وصلت المنتج مكسورًا؟">
+                            <div class="faq-question">
+                                <h3>ماذا أفعل إذا وصلت المنتج مكسورًا؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>صور المنتج وأرسل لنا الشكوى، سيتم استرداد المبلغ فورًا.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div class="faq-item" data-search="هل MahWAY تقدم ضمانًا على الخدمات؟">
+                            <div class="faq-question">
+                                <h3>هل MahWAY تقدم ضمانًا على الخدمات؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، ضمان أمان المنتج وسلامة الشحنة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div class="faq-item" data-search="كيف تضمن MahWAY الجودة؟">
+                            <div class="faq-question">
+                                <h3>كيف تضمن MahWAY الجودة؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>خبرة 15 سنة + مراجعة دقيقة لكل شحنة قبل التسليم.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 5 -->
+                        <div class="faq-item" data-search="هل يمكن للعملاء الاعتماد على MahWAY لجميع طلباتهم المستقبلية؟">
+                            <div class="faq-question">
+                                <h3>هل يمكن للعملاء الاعتماد على MahWAY لجميع طلباتهم المستقبلية؟</h3>
+                                <i class="fas fa-chevron-down faq-question-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    <p>نعم، نحن نضمن الثقة والشفافية في كل التعاملات.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact CTA -->
+            <div class="faq-contact-cta">
+                <h3>لم تجد إجابة سؤالك؟</h3>
+                <p>يمكنك التواصل معنا مباشرة وسنكون سعداء بمساعدتك</p>
+                <div class="faq-contact-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-envelope"></i> تواصل معنا
+                    </a>
+                    <a href="https://wa.me/6282128723094" class="btn btn-secondary btn-lg" target="_blank">
+                        <i class="fab fa-whatsapp"></i> واتساب مباشر
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Company Info -->
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <img src="images/logo.png" alt="MahWAY Logo" width="40" height="40">
+                            <span class="logo-text">MahWAY</span>
+                        </div>
+                        <p class="footer-description">
+                            من حقك تمتلك أي منتج في أي مكان في العالم بدون قلق على الشحن أو سلامة المنتج
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://wa.me/6282128723094" class="social-link" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="footer-col">
+                        <h3 class="footer-title">روابط سريعة</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">الرئيسية</a></li>
+                            <li><a href="about.html">من نحن</a></li>
+                            <li><a href="services.html">الخدمات</a></li>
+                            <li><a href="payment.html">طرق الدفع</a></li>
+                            <li><a href="contact.html">التواصل</a></li>
+                            <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div class="footer-col">
+                        <h3 class="footer-title">خدماتنا</h3>
+                        <ul class="footer-links">
+                            <li><a href="services.html#import">الاستيراد حسب الطلب</a></li>
+                            <li><a href="services.html#export">التصدير</a></li>
+                            <li><a href="services.html#shipping">الشحن الدولي</a></li>
+                            <li><a href="services.html#customs">التخليص الجمركي</a></li>
+                            <li><a href="services.html#domestic">الشحن الداخلي</a></li>
+                            <li><a href="services.html#tracking">متابعة الطلب</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="footer-col">
+                        <h3 class="footer-title">معلومات التواصل</h3>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>واتساب مباشر</strong>
+                                    <a href="https://wa.me/6282128723094">+62821-2872-3094</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>البريد الإلكتروني</strong>
+                                    <a href="mailto:mahway.contact@gmail.com">mahway.contact@gmail.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>أوقات العمل</strong>
+                                    <span>من السبت إلى الخميس</span>
+                                    <span>9:00 ص - 10:00 م</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        &copy; 2025 MahWAY. جميع الحقوق محفوظة
+                    </p>
+                    <div class="footer-links-bottom">
+                        <a href="privacy.html">سياسة الخصوصية</a>
+                        <a href="terms.html">الشروط والأحكام</a>
+                        <a href="licenses.html">التراخيص</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6282128723094" class="whatsapp-float" target="_blank" aria-label="تواصل عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    
+    <!-- FAQ JavaScript -->
+    <script>
+        // انتظر حتى يتم تحميل الصفحة بالكامل
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ===== تهيئة نظام الأسئلة الشائعة =====
+            
+            // 1. عناصر DOM الأساسية
+            const faqSearchInput = document.getElementById('faqSearch');
+            const faqCategoryButtons = document.querySelectorAll('.faq-category-btn');
+            const faqSections = document.querySelectorAll('.faq-section');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const noResultsMessage = document.getElementById('noResults');
+            
+            // 2. تفعيل/تعطيل الأسئلة (Accordion)
+            function initFAQAccordion() {
+                faqQuestions.forEach(question => {
+                    question.addEventListener('click', function() {
+                        const faqItem = this.closest('.faq-item');
+                        const isActive = faqItem.classList.contains('active');
+                        
+                        // إغلاق جميع الأسئلة الأخرى
+                        if (!isActive) {
+                            document.querySelectorAll('.faq-item.active').forEach(item => {
+                                item.classList.remove('active');
+                            });
+                        }
+                        
+                        // تبديل حالة السؤال الحالي
+                        faqItem.classList.toggle('active');
+                    });
+                });
+                
+                // فتح أول سؤال تلقائيًا
+                if (faqItems.length > 0) {
+                    faqItems[0].classList.add('active');
+                }
+            }
+            
+            // 3. تصفية حسب الفئة
+            function initCategoryFilter() {
+                faqCategoryButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const category = this.getAttribute('data-category');
+                        
+                        // تحديث حالة الأزرار النشطة
+                        faqCategoryButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // تصفية الأسئلة
+                        filterFAQs(category, faqSearchInput.value.trim());
+                    });
+                });
+            }
+            
+            // 4. البحث في الأسئلة
+            function initSearch() {
+                let searchTimeout;
+                
+                faqSearchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    
+                    searchTimeout = setTimeout(() => {
+                        const searchTerm = this.value.trim().toLowerCase();
+                        const activeCategory = document.querySelector('.faq-category-btn.active').getAttribute('data-category');
+                        
+                        filterFAQs(activeCategory, searchTerm);
+                    }, 300); // تأخير 300 مللي ثانية
+                });
+                
+                // مسح البحث
+                faqSearchInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        this.value = '';
+                        const activeCategory = document.querySelector('.faq-category-btn.active').getAttribute('data-category');
+                        filterFAQs(activeCategory, '');
+                    }
+                });
+            }
+            
+            // 5. وظيفة التصفية الرئيسية
+            function filterFAQs(category, searchTerm) {
+                let hasVisibleItems = false;
+                
+                faqSections.forEach(section => {
+                    const sectionCategory = section.getAttribute('data-category');
+                    let sectionHasVisibleItems = false;
+                    
+                    // التحقق مما إذا كانت الفئة مطابقة
+                    const categoryMatch = category === 'all' || sectionCategory === category;
+                    
+                    // البحث عن الأسئلة في هذه الفئة
+                    const sectionItems = section.querySelectorAll('.faq-item');
+                    
+                    sectionItems.forEach(item => {
+                        const questionText = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                        const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                        const searchData = item.getAttribute('data-search')?.toLowerCase() || '';
+                        
+                        // التحقق مما إذا كان السؤال يطابق معايير البحث
+                        const searchMatch = !searchTerm || 
+                                           questionText.includes(searchTerm) || 
+                                           answerText.includes(searchTerm) ||
+                                           searchData.includes(searchTerm);
+                        
+                        // إظهار/إخفاء السؤال بناءً على النتائج
+                        if (categoryMatch && searchMatch) {
+                            item.style.display = 'flex';
+                            sectionHasVisibleItems = true;
+                            hasVisibleItems = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // إظهار/إخفاء قسم الفئة بأكمله
+                    section.style.display = sectionHasVisibleItems ? 'block' : 'none';
+                });
+                
+                // إظهار/إخفاء رسالة "لا توجد نتائج"
+                if (noResultsMessage) {
+                    if (hasVisibleItems || (!searchTerm && category === 'all')) {
+                        noResultsMessage.classList.remove('show');
+                    } else {
+                        noResultsMessage.classList.add('show');
+                    }
+                }
+            }
+            
+            // 6. تهيئة جميع الميزات
+            function initFAQSystem() {
+                initFAQAccordion();
+                initCategoryFilter();
+                initSearch();
+                
+                // عرض جميع الأسئلة في البداية
+                filterFAQs('all', '');
+            }
+            
+            // 7. تشغيل النظام
+            initFAQSystem();
+            
+            // 8. إضافة اختصارات لوحة المفاتيح
+            document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + F للبحث
+                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                    e.preventDefault();
+                    faqSearchInput.focus();
+                }
+                
+                // Escape لإغلاق جميع الأسئلة
+                if (e.key === 'Escape' && !faqSearchInput.matches(':focus')) {
+                    document.querySelectorAll('.faq-item.active').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+                
+                // مفاتيح الأسهم للتنقل بين الأسئلة
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    
+                    const activeItems = Array.from(document.querySelectorAll('.faq-item'));
+                    const visibleItems = activeItems.filter(item => 
+                        item.style.display !== 'none' && 
+                        window.getComputedStyle(item).display !== 'none'
+                    );
+                    
+                    if (visibleItems.length === 0) return;
+                    
+                    const currentIndex = visibleItems.findIndex(item => 
+                        item.classList.contains('active')
+                    );
+                    
+                    let nextIndex;
+                    if (e.key === 'ArrowDown') {
+                        nextIndex = currentIndex < visibleItems.length - 1 ? currentIndex + 1 : 0;
+                    } else {
+                        nextIndex = currentIndex > 0 ? currentIndex - 1 : visibleItems.length - 1;
+                    }
+                    
+                    // إغلاق جميع الأسئلة
+                    document.querySelectorAll('.faq-item.active').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // فتح السؤال الجديد
+                    visibleItems[nextIndex].classList.add('active');
+                    
+                    // التمرير إلى السؤال
+                    visibleItems[nextIndex].scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }
+            });
+            
+            // 9. تحسين تجربة المستخدم للهواتف
+            function initTouchSupport() {
+                let touchStartY = 0;
+                let touchEndY = 0;
+                
+                document.addEventListener('touchstart', function(e) {
+                    touchStartY = e.changedTouches[0].screenY;
+                });
+                
+                document.addEventListener('touchend', function(e) {
+                    touchEndY = e.changedTouches[0].screenY;
+                    
+                    // Swipe down to close all
+                    if (touchStartY - touchEndY > 100) {
+                        document.querySelectorAll('.faq-item.active').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                    }
+                });
+            }
+            
+            initTouchSupport();
+            
+            // 10. حفظ حالة البحث في LocalStorage
+            function saveSearchState() {
+                const state = {
+                    category: document.querySelector('.faq-category-btn.active').getAttribute('data-category'),
+                    search: faqSearchInput.value
+                };
+                
+                try {
+                    localStorage.setItem('faqState', JSON.stringify(state));
+                } catch (e) {
+                    console.log('لا يمكن حفظ حالة البحث:', e);
+                }
+            }
+            
+            function loadSearchState() {
+                try {
+                    const savedState = localStorage.getItem('faqState');
+                    if (savedState) {
+                        const state = JSON.parse(savedState);
+                        
+                        // تطبيق الفئة المحفوظة
+                        const categoryButton = document.querySelector(`.faq-category-btn[data-category="${state.category}"]`);
+                        if (categoryButton) {
+                            faqCategoryButtons.forEach(btn => btn.classList.remove('active'));
+                            categoryButton.classList.add('active');
+                        }
+                        
+                        // تطبيق نص البحث المحفوظ
+                        if (state.search) {
+                            faqSearchInput.value = state.search;
+                        }
+                        
+                        // تطبيق التصفية
+                        filterFAQs(state.category, state.search);
+                    }
+                } catch (e) {
+                    console.log('لا يمكن تحميل حالة البحث:', e);
+                }
+            }
+            
+            // تحميل الحالة المحفوظة عند بدء التشغيل
+            loadSearchState();
+            
+            // حفظ الحالة عند التغيير
+            faqSearchInput.addEventListener('input', saveSearchState);
+            faqCategoryButtons.forEach(button => {
+                button.addEventListener('click', saveSearchState);
+            });
+            
+            // 11. إضافة مؤشرات تقدم للبحث
+            function showSearchIndicator(show) {
+                const searchIcon = document.querySelector('.faq-search-icon');
+                if (show) {
+                    searchIcon.classList.remove('fa-search');
+                    searchIcon.classList.add('fa-spinner', 'fa-spin');
+                } else {
+                    searchIcon.classList.remove('fa-spinner', 'fa-spin');
+                    searchIcon.classList.add('fa-search');
+                }
+            }
+            
+            // تحديث مستمع البحث لإظهار المؤشر
+            const originalSearchHandler = faqSearchInput.oninput;
+            faqSearchInput.addEventListener('input', function() {
+                showSearchIndicator(true);
+                if (originalSearchHandler) {
+                    originalSearchHandler.call(this);
+                }
+                
+                setTimeout(() => {
+                    showSearchIndicator(false);
+                }, 300);
+            });
+            
+            // 12. إضافة زر لمسح البحث
+            function addClearSearchButton() {
+                const clearButton = document.createElement('button');
+                clearButton.innerHTML = '<i class="fas fa-times"></i>';
+                clearButton.className = 'faq-clear-search';
+                clearButton.setAttribute('aria-label', 'مسح البحث');
+                clearButton.style.cssText = `
+                    position: absolute;
+                    left: 3.5rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    color: var(--gray-color);
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    display: none;
+                `;
+                
+                faqSearchInput.parentNode.appendChild(clearButton);
+                
+                // إظهار/إخفاء الزر بناءً على وجود نص
+                faqSearchInput.addEventListener('input', function() {
+                    clearButton.style.display = this.value ? 'block' : 'none';
+                });
+                
+                // مسح البحث عند النقر
+                clearButton.addEventListener('click', function() {
+                    faqSearchInput.value = '';
+                    faqSearchInput.focus();
+                    filterFAQs(
+                        document.querySelector('.faq-category-btn.active').getAttribute('data-category'),
+                        ''
+                    );
+                    clearButton.style.display = 'none';
+                    saveSearchState();
+                });
+            }
+            
+            addClearSearchButton();
+            
+            // 13. إضافة رسومات متحركة للأسئلة
+            function addAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+                
+                faqItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        observer.observe(item);
+                    }, 100);
+                });
+            }
+            
+            addAnimations();
+            
+            // 14. إضافة إحصائيات البحث
+            function addSearchStats() {
+                const statsElement = document.createElement('div');
+                statsElement.className = 'faq-search-stats';
+                statsElement.style.cssText = `
+                    text-align: center;
+                    color: var(--gray-color);
+                    margin: 1rem 0;
+                    font-size: 0.9rem;
+                `;
+                
+                faqSearchInput.parentNode.parentNode.insertBefore(statsElement, faqSearchInput.parentNode.nextSibling);
+                
+                function updateStats() {
+                    const visibleItems = document.querySelectorAll('.faq-item[style*="display: flex"], .faq-item:not([style*="display: none"])');
+                    const totalItems = faqItems.length;
+                    
+                    statsElement.textContent = `عرض ${visibleItems.length} من ${totalItems} سؤال`;
+                }
+                
+                // تحديث الإحصائيات عند كل بحث
+                faqSearchInput.addEventListener('input', updateStats);
+                faqCategoryButtons.forEach(button => {
+                    button.addEventListener('click', updateStats);
+                });
+                
+                // التحديث الأولي
+                updateStats();
+            }
+            
+            addSearchStats();
+            
+            // 15. إضافة طباعة الأسئلة
+            function addPrintFunctionality() {
+                const printButton = document.createElement('button');
+                printButton.innerHTML = '<i class="fas fa-print"></i> طباعة الأسئلة';
+                printButton.className = 'btn btn-outline';
+                printButton.style.margin = '1rem auto';
+                printButton.style.display = 'block';
+                
+                document.querySelector('.faq-contact-cta').parentNode.insertBefore(printButton, document.querySelector('.faq-contact-cta'));
+                
+                printButton.addEventListener('click', function() {
+                    const printWindow = window.open('', '_blank');
+                    const activeCategory = document.querySelector('.faq-category-btn.active').getAttribute('data-category');
+                    const categoryName = document.querySelector('.faq-category-btn.active').textContent;
+                    
+                    let printContent = `
+                        <!DOCTYPE html>
+                        <html dir="rtl">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>أسئلة ${categoryName} - MahWAY</title>
+                            <style>
+                                body { 
+                                    font-family: 'Cairo', sans-serif; 
+                                    line-height: 1.6; 
+                                    margin: 20px; 
+                                    color: #333; 
+                                }
+                                h1 { color: #2c3e50; text-align: center; }
+                                h2 { color: #e74c3c; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+                                .question { margin: 20px 0; }
+                                .question h3 { color: #2c3e50; margin-bottom: 5px; }
+                                .answer { color: #666; margin-right: 20px; }
+                                .footer { text-align: center; margin-top: 40px; color: #777; font-size: 0.9em; }
+                                @media print {
+                                    .no-print { display: none; }
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <h1>أسئلة ${categoryName} - MahWAY</h1>
+                            <p class="no-print">تاريخ الطباعة: ${new Date().toLocaleDateString('ar-EG')}</p>
+                    `;
+                    
+                    // جمع الأسئلة المرئية فقط
+                    const visibleSections = document.querySelectorAll('.faq-section[style*="display: block"]');
+                    
+                    visibleSections.forEach(section => {
+                        const sectionTitle = section.querySelector('.faq-section-title').textContent;
+                        printContent += `<h2>${sectionTitle}</h2>`;
+                        
+                        const visibleItems = section.querySelectorAll('.faq-item[style*="display: flex"]');
+                        visibleItems.forEach(item => {
+                            const question = item.querySelector('.faq-question h3').textContent;
+                            const answer = item.querySelector('.faq-answer p').textContent;
+                            
+                            printContent += `
+                                <div class="question">
+                                    <h3>${question}</h3>
+                                    <div class="answer">${answer}</div>
+                                </div>
+                            `;
+                        });
+                    });
+                    
+                    printContent += `
+                            <div class="footer">
+                                <p>MahWAY - خدمة الاستيراد والتصدير والشحن الدولي</p>
+                                <p>واتساب: +6282128723094 | البريد: mahway.contact@gmail.com</p>
+                                <p>© 2025 جميع الحقوق محفوظة</p>
+                            </div>
+                        </body>
+                        </html>
+                    `;
+                    
+                    printWindow.document.write(printContent);
+                    printWindow.document.close();
+                    printWindow.print();
+                });
+            }
+            
+            addPrintFunctionality();
+            
+        });
+    </script>
+    
+    <style>
+        /* تحسينات إضافية */
+        .faq-clear-search {
+            background: none;
+            border: none;
+            color: var(--gray-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            transition: var(--transition-fast);
+        }
+        
+        .faq-clear-search:hover {
+            color: var(--secondary-color);
+        }
+        
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (max-width: 576px) {
+            .faq-search-input {
+                padding: 0.75rem 2.5rem 0.75rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .faq-search-icon {
+                left: 1rem;
+            }
+            
+            .faq-clear-search {
+                left: 3rem;
+            }
+            
+            .faq-question {
+                padding: 1rem;
+            }
+            
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+        }
+        
+        /* تحسينات للوضع الليلي */
+        @media (prefers-color-scheme: dark) {
+            .faq-item {
+                background-color: #2d2d2d;
+                border-color: #404040;
+            }
+            
+            .faq-question h3 {
+                color: #e0e0e0;
+            }
+            
+            .faq-answer p {
+                color: #b0b0b0;
+            }
+            
+            .faq-search-input {
+                background-color: #2d2d2d;
+                border-color: #404040;
+                color: #e0e0e0;
+            }
+            
+            .faq-search-input::placeholder {
+                color: #888;
+            }
+            
+            .faq-category-btn {
+                background-color: #2d2d2d;
+                border-color: #404040;
+                color: #e0e0e0;
+            }
+            
+            .faq-category-btn.active {
+                background-color: var(--accent-color);
+                color: white;
+            }
+        }
+        
+        /* تحسينات للوصول (Accessibility) */
+        .faq-question:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        /* تحسينات للأداء */
+        .faq-answer {
+            will-change: max-height;
+        }
+        
+        /* تحسينات للطباعة */
+        @media print {
+            .faq-search-box,
+            .faq-categories,
+            .faq-contact-cta,
+            .whatsapp-float,
+            .back-to-top {
+                display: none !important;
+            }
+            
+            .faq-item {
+                break-inside: avoid;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            
+            .faq-item.active .faq-answer {
+                max-height: none !important;
+                display: block !important;
+            }
+            
+            .faq-question-icon {
+                display: none;
+            }
+        }
+    </style>
+</body>
+</html>
